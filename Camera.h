@@ -1,24 +1,28 @@
 #pragma once
+#include <ostream>
 struct Vec3
 {
 	double x, y, z;
-	Vec3(double X, double Y, double Z) {
-		x = X;
-		y = Y;
-		z = Z;
-	}
-	Vec3() {
-		x = 0;
-		y = 0;
-		z = 0;
-	}
+	Vec3(double X, double Y, double Z);
+	Vec3();
+	Vec3 normalize() const;
+	double dot(const Vec3& a) const;
+	Vec3 cross(const Vec3& rhs) const;
+	Vec3 operator -(const Vec3& rhs) const;
+	Vec3 operator -() const;
+	Vec3 operator +(const Vec3& rhs) const;
+	
 };
 
+Vec3 operator *(const Vec3& lhs, const Vec3& rhs);
+Vec3 operator *(const Vec3& lhs, double rhs);
+std::ostream& operator <<(std::ostream& ost, const Vec3& v);
 
 struct Vec2
 {
 	double x, y;
 	Vec2(double X, double Y) :x(X), y(Y) {};
+	double dot(const Vec2& a) const;
 };
 
 typedef Vec3 Point3;
